@@ -1,8 +1,5 @@
 
 from tkinter import *                           #Meghívjuk a tkinter-t
-import math
-import pyperclip
-import tkinter.messagebox as msg
 
 win = Tk()                                      #Létrehozunk egy Tk()objektumot
 win.title("Effektív dózis kalkulátor ver. 1.0")          #Elnevezzük
