@@ -40,7 +40,7 @@ def get_dlp_type_name(etype):
     return dlp_type_description[etype]
 
 for e in examination_type_description:
-    greetings = greetings + f' - {str(get_examination_type_name(e))}: {str(e)}\n'
+    greetings = greetings + f' - {str(e)}: {str(e)}\n'
 
 def dlp_input_message(examination_type, dlp_type):
     print(f'Kérem, adja meg a {get_examination_type_name(examination_type)} {get_dlp_type_name(dlp_type)} DLP értékét, majd nyomjon Enter-t')
@@ -71,7 +71,6 @@ age_input = get_age_value()
 
 if examination_type_value in ["k", "m", "mhk", "hkm", "e" ]:
     dlp_value = get_dlp_value()
-
 elif examination_type_value in ["km","kmh", "kmhk" ]:
     if examination_type_value == "km":
         koponya_topogram_dlp_value = get_dlp_type_value("k", 0)
@@ -90,10 +89,6 @@ elif examination_type_value in ["km","kmh", "kmhk" ]:
         pass
     elif examination_type_value == "kmhk":
         pass
-
-
-
-
 else:
     print("Incorrect Value, try again.")
 
@@ -103,6 +98,3 @@ print(f"Topogram value: {topogram_dlp_value}")
 print(f"Nativ value: {nativ_dlp_value}")
 print(f"Kontraszt value: {kontraszt_dlp_value}")
 print(f"Age value: {age_input}")
-
-
-
