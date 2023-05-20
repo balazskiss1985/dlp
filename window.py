@@ -3,15 +3,6 @@ from tkinter import TclError, ttk
 
 
 age_selected = 0
-dlp_value_label = ""
-topogram_value_label = ""
-nativ_value_label = ""
-kontraszt_value_label = ""
-dlp_value_selected = 0
-topogram_value_selected = 0
-nativ_value_selected = 0
-kontraszt_value_selected = 0
-dlp_type_selected = ""
 frame = ""
 g_option = ""
 
@@ -170,7 +161,40 @@ def add_constant_value_by_age_and_dlp_type(age, dlp_type):
 for e in examination_type_description:
     greetings = greetings + f" - {str(get_examination_type_name(e))}: {str(e)}\n"
 
-def print_examination_value(examination_type_value, age_value, dlp_value, topogram_value, nativ_value, kontraszt_value):
+def print_examination_value(examination_type_value, age_value):
+
+    global frame
+
+    #koponya_topogram_value_label = ttk.Label(frame, text='Topogram Value:')
+    #koponya_topogram_value_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5,)
+    #koponya_topogram_value_selected = ttk.Entry(frame, width=30)
+    #koponya_topogram_value_selected.grid(column=1, row=2, sticky=tk.W)
+
+    #koponya_nativ_value_label = ttk.Label(frame, text='Nativ Value:')
+    #koponya_nativ_value_label.grid(column=0, row=3, sticky=tk.W, padx=5, pady=5,)
+    #koponya_nativ_value_selected = ttk.Entry(frame, width=30)
+    #koponya_nativ_value_selected.grid(column=1, row=3, sticky=tk.W)
+
+    #koponya_kontraszt_value_label = ttk.Label(frame, text='Kontraszt Value:')
+    #koponya_kontraszt_value_label.grid(column=0, row=4, sticky=tk.W, padx=5, pady=5,)
+    #koponya_kontraszt_value_selected = ttk.Entry(frame, width=30)
+    #koponya_kontraszt_value_selected.grid(column=1, row=4, sticky=tk.W)
+
+    #mell_topogram_value_label = ttk.Label(frame, text='Topogram Value:')
+    #mell_topogram_value_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5,)
+    #mell_topogram_value_selected = ttk.Entry(frame, width=30)
+    #mell_topogram_value_selected.grid(column=1, row=2, sticky=tk.W)
+
+    #mell_nativ_value_label = ttk.Label(frame, text='Nativ Value:')
+    #mell_nativ_value_label.grid(column=0, row=3, sticky=tk.W, padx=5, pady=5,)
+    #mell_nativ_value_selected = ttk.Entry(frame, width=30)
+    #mell_nativ_value_selected.grid(column=1, row=3, sticky=tk.W)
+
+    #mell_kontraszt_value_label = ttk.Label(frame, text='Kontraszt Value:')
+    #mell_kontraszt_value_label.grid(column=0, row=4, sticky=tk.W, padx=5, pady=5,)
+    #mell_kontraszt_value_selected = ttk.Entry(frame, width=30)
+    #mell_kontraszt_value_selected.grid(column=1, row=4, sticky=tk.W)
+
     value = 0
     add_value = 0
 
@@ -205,7 +229,12 @@ def print_examination_value(examination_type_value, age_value, dlp_value, topogr
             add_value = mellkas_has
         value = koponya + add_value
     elif examination_type_value in ["k", "m", "mhk", "hkm", "e"]:
-        glp_value = dlp_value
+        dlp_value_label = ttk.Label(frame, text='DLP Value:')
+        dlp_value_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5,)
+        dlp_value_selected = ttk.Entry(frame, width=30)
+        dlp_value_selected.grid(column=1, row=2, sticky=tk.W)
+        print(f"DLP VALUE: {dlp_value_selected.get()}")
+        glp_value = float(dlp_value_selected.get())
         if examination_type_value == "k":
             value = glp_value * add_constant_value_by_age_and_dlp_type(age_value, "k")
         if examination_type_value == "m":
@@ -237,50 +266,15 @@ def print_examination_value(examination_type_value, age_value, dlp_value, topogr
 
 def print_values():
     selected_type = list(examination_type_description.keys()) [list(examination_type_description.values()).index(dlp_type_selected.get())]
-    print_examination_value(selected_type, int(age_selected.get()), int(dlp_value_selected.get()))
+    print_examination_value(selected_type, int(age_selected.get()))
 
-def set_widget(option):
-    global g_option
-    g_option = option
-    if g_option == "koponya" or g_option == "mellkas" or g_option == "mellkas-has" or g_option == "mellkas-has-kismedence" or g_option == "has-kismedence":
-        show_dlp_value_widget(frame)
-    else:
-        hide_dlp_value_widget(frame)
-
-
-def show_dlp_value_widget(frame):
-    global dlp_value_label
-    global dlp_value_selected
-
-
-    dlp_value_label = ttk.Label(frame, text='DLP Value:')
-    dlp_value_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5,)
-    dlp_value_selected = ttk.Entry(frame, width=30)
-    dlp_value_selected.grid(column=1, row=2, sticky=tk.W)
-
-def hide_dlp_value_widget(frame):
-    global topogram_value_label
-    global nativ_value_label
-    global kontraszt_value_label
-
-    global topogram_value_selected
-    global nativ_value_selected
-    global kontraszt_value_selected
-
-    topogram_value_label = ttk.Label(frame, text='Topogram Value:')
-    topogram_value_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5,)
-    topogram_value_selected = ttk.Entry(frame, width=30)
-    topogram_value_selected.grid(column=1, row=2, sticky=tk.W)
-
-    nativ_value_label = ttk.Label(frame, text='Nativ Value:')
-    nativ_value_label.grid(column=0, row=3, sticky=tk.W, padx=5, pady=5,)
-    nativ_value_selected = ttk.Entry(frame, width=30)
-    nativ_value_selected.grid(column=1, row=3, sticky=tk.W)
-
-    kontraszt_value_label = ttk.Label(frame, text='Kontraszt Value:')
-    kontraszt_value_label.grid(column=0, row=4, sticky=tk.W, padx=5, pady=5,)
-    kontraszt_value_selected = ttk.Entry(frame, width=30)
-    kontraszt_value_selected.grid(column=1, row=4, sticky=tk.W)
+#def set_widget(option):
+#    global g_option
+#    g_option = option
+#    if g_option == "koponya" or g_option == "mellkas" or g_option == "mellkas-has" or g_option == "mellkas-has-kismedence" or g_option == "has-kismedence":
+#        show_dlp_value_widget(frame)
+#    else:
+#        hide_dlp_value_widget(frame)
 
 
 def create_input_frame(container):
@@ -321,7 +315,7 @@ def create_input_frame(container):
         frame,
         dlp_type_selected,
         *dlp_options,
-        command=set_widget,
+        #command=set_widget,
     )
     dropdown.grid(column=1, row=1, sticky=tk.W)
 
